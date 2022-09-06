@@ -36,10 +36,10 @@ void setup()
 
     pinMode(led1, OUTPUT);
     pinMode(led2, OUTPUT);
-    
+
     int counter = sizeof(Elements) / sizeof(Elements[0]);
     blink(counter);
-    for(int i = 0; i < counter; i++)
+    for (int i = 0; i < counter; i++)
     {
         switch(Elements[i].type)
         {
@@ -68,7 +68,6 @@ void setup()
         }
     }
 
-
     for (int i = 0; i < 2; i++)
     {
         digitalWrite(led1, HIGH);
@@ -79,7 +78,7 @@ void setup()
         delay(500);
     }
 
-    digitalWrite(led2, LOW);    
+    digitalWrite(led2, LOW);
 }
 
 void loop()
@@ -93,7 +92,7 @@ void loop()
 
         Element ele = Elements[index];
 
-        switch(ele.type)
+        switch (ele.type)
         {
             case ElementType::Weiche:
             {
@@ -124,6 +123,15 @@ void loop()
 
             case ElementType::Block:
             {
+                break;
+            }
+
+            case ElementType::Trenner:
+            {
+                blink(12);
+                digitalWrite(ele.pin1, HIGH);
+                delay(1000);
+                digitalWrite(ele.pin1, HIGH);
                 break;
             }
         }
