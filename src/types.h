@@ -4,7 +4,8 @@ enum ElementType
 {
     Weiche,
     Signal,
-    Block
+    Block,
+    Trenner
 };
 
 struct Element

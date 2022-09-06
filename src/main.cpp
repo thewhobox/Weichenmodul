@@ -65,6 +65,12 @@ void setup()
             {
                 break;
             }
+
+            case ElementType::Trenner:
+            {
+                pinMode(Elements[i].pin1, OUTPUT);
+                break;
+            }
         }
     }
 
@@ -128,7 +134,6 @@ void loop()
 
             case ElementType::Trenner:
             {
-                blink(12);
                 digitalWrite(ele.pin1, HIGH);
                 delay(1000);
                 digitalWrite(ele.pin1, HIGH);
