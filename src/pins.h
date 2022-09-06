@@ -1,3 +1,5 @@
+#pragma once
+
 //https://github.com/MCUdude/MiniCore/blob/master/avr/variants/standard/pins_arduino.h#L154
 /*
 #define PIN_PD0 0
