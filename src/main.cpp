@@ -3,7 +3,7 @@
 #include "pins.h"
 #include "types.h"
 
-#include "config_32.h"
+#include "config_33.h"
 
 int timedelay = 100;
 
@@ -12,21 +12,6 @@ const int led2 = PIN_D13;
 
 void DataReceive(int numBytes) {}
 void DataRequest() {}
-
-void blink(int count)
-{
-    digitalWrite(led2, HIGH);
-    delay(500);
-
-    for (int i = 0; i < count; i++)
-    {
-        digitalWrite(led1, HIGH);
-        delay(1000);
-        digitalWrite(led1, LOW);
-        delay(500);
-    }
-    digitalWrite(led2, LOW);
-}
 
 void setup()
 {
@@ -38,7 +23,6 @@ void setup()
     pinMode(led2, OUTPUT);
 
     int counter = sizeof(Elements) / sizeof(Elements[0]);
-    blink(counter);
     for (int i = 0; i < counter; i++)
     {
         switch(Elements[i].type)
@@ -74,16 +58,11 @@ void setup()
         }
     }
 
-    for (int i = 0; i < 2; i++)
-    {
-        digitalWrite(led1, HIGH);
-        digitalWrite(led2, LOW);
-        delay(1000);
-        digitalWrite(led1, LOW);
-        digitalWrite(led2, HIGH);
-        delay(500);
-    }
-
+    digitalWrite(led2, HIGH);
+    delay(500);
+    digitalWrite(led1, HIGH);
+    delay(200);
+    digitalWrite(led1, LOW);
     digitalWrite(led2, LOW);
 }
 

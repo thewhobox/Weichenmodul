@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include "types.h"
 #include "pins.h"
-
-const byte addr = 0x31;
+#warning "Kompiling now for 0x33"
+const byte addr = 0x33;
 
 const Element Elements[] = {
     {
@@ -18,11 +18,11 @@ const Element Elements[] = {
     {
         .pin1 = PIN_D7,
         .pin2 = PIN_D8,
-        .type = ElementType::Weiche
+        .type = ElementType::Signal
     },
     {
-        .pin1 = PIN_D4,
-        .pin2 = PIN_D3,
+        .pin1 = PIN_D3,
+        .pin2 = PIN_D4,
         .type = ElementType::Weiche
     },
 };
