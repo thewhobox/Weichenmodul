@@ -31,8 +31,10 @@ void setup()
             {
                 pinMode(Elements[i].pin1, OUTPUT);
                 pinMode(Elements[i].pin2, OUTPUT);
-                digitalWrite(Elements[i].pin1, LOW);
+                digitalWrite(Elements[i].pin1, HIGH);
                 digitalWrite(Elements[i].pin2, LOW);
+                delay(timedelay);
+                digitalWrite(Elements[i].pin1, LOW);
                 break;
             }
 
@@ -53,6 +55,7 @@ void setup()
             case ElementType::Trenner:
             {
                 pinMode(Elements[i].pin1, OUTPUT);
+                digitalWrite(Elements[i].pin1, LOW);
                 break;
             }
         }
