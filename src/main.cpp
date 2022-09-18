@@ -15,6 +15,9 @@ void DataRequest() {}
 
 void setup()
 {
+    int delayT = (addr - 0x30) * timedelay * 10;
+    delay(delayT);
+
     Wire.begin(addr);
     Wire.onReceive(DataReceive);
     Wire.onRequest(DataRequest);
