@@ -3,12 +3,18 @@
 #include "pins.h"
 #include "types.h"
 
-#include "config_33.h"
+#include "config_32.h"
 
 int timedelay = 100;
 
 const int led1 = PIN_D14;
 const int led2 = PIN_D13;
+const uint8_t pins[] = {
+    PIN_D15, PIN_D16,   //Weiche 1
+    PIN_D5, PIN_D6,     //weiche 2
+    PIN_D7, PIN_D8,     //weiche 3
+    PIN_D3, PIN_D4      //Weiche 4
+};
 
 void DataReceive(int numBytes) {}
 void DataRequest() {}
@@ -28,25 +34,25 @@ void setup()
     int counter = sizeof(Elements) / sizeof(Elements[0]);
     for (int i = 0; i < counter; i++)
     {
-        switch(Elements[i].type)
+        switch(Elements[i])
         {
             case ElementType::Weiche:
             {
-                pinMode(Elements[i].pin1, OUTPUT);
-                pinMode(Elements[i].pin2, OUTPUT);
-                digitalWrite(Elements[i].pin1, HIGH);
-                digitalWrite(Elements[i].pin2, LOW);
+                pinMode(pins[i*2], OUTPUT);
+                pinMode(pins[i*2+1], OUTPUT);
+                digitalWrite(pins[i*2], HIGH);
+                digitalWrite(pins[i*2+1], LOW);
                 delay(timedelay);
-                digitalWrite(Elements[i].pin1, LOW);
+                digitalWrite(pins[i*2], LOW);
                 break;
             }
 
             case ElementType::Signal:
             {
-                pinMode(Elements[i].pin1, OUTPUT);
-                pinMode(Elements[i].pin2, OUTPUT);
-                digitalWrite(Elements[i].pin1, HIGH);
-                digitalWrite(Elements[i].pin2, LOW);
+                pinMode(pins[i*2], OUTPUT);
+                pinMode(pins[i*2+1], OUTPUT);
+                digitalWrite(pins[i*2], HIGH);
+                digitalWrite(pins[i*2+1], LOW);
                 break;
             }
 
@@ -57,8 +63,8 @@ void setup()
 
             case ElementType::Trenner:
             {
-                pinMode(Elements[i].pin1, OUTPUT);
-                digitalWrite(Elements[i].pin1, LOW);
+                pinMode(pins[i*2], OUTPUT);
+                digitalWrite(pins[i*2], LOW);
                 break;
             }
         }
@@ -81,14 +87,14 @@ void loop()
         int index = data >> 1;
         int state = data & 0x01;
 
-        Element ele = Elements[index];
+        ElementType ele = Elements[index];
 
-        switch (ele.type)
+        switch (ele)
         {
             case ElementType::Weiche:
             {
                 digitalWrite(led1, HIGH);
-                int pin = state ? ele.pin2 : ele.pin1;
+                int pin = state ? pins[index*2+1] : pins[index*2];
                 digitalWrite(pin, HIGH);
                 delay(timedelay);
                 digitalWrite(pin, LOW);
@@ -100,11 +106,11 @@ void loop()
             {
                 if(state)
                 {
-                    digitalWrite(ele.pin1, LOW);
-                    digitalWrite(ele.pin2, HIGH);
+                    digitalWrite(pins[index*2], LOW);
+                    digitalWrite(pins[index*2+1], HIGH);
                 } else {
-                    digitalWrite(ele.pin2, LOW);
-                    digitalWrite(ele.pin1, HIGH);
+                    digitalWrite(pins[index*2+1], LOW);
+                    digitalWrite(pins[index*2], HIGH);
                 }
                 digitalWrite(led1, HIGH);
                 delay(timedelay);
@@ -119,9 +125,9 @@ void loop()
 
             case ElementType::Trenner:
             {
-                digitalWrite(ele.pin1, HIGH);
+                digitalWrite(pins[index*2], HIGH);
                 delay(1000);
-                digitalWrite(ele.pin1, HIGH);
+                digitalWrite(pins[index*2], HIGH);
                 break;
             }
         }

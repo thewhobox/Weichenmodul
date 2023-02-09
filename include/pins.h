@@ -32,13 +32,13 @@
 #define PIN_D1 PIN_PC1
 #define PIN_D2 PIN_PC0
 #define PIN_D3 PIN_PB1
-#define PIN_D4 PIN_PD2
+#define PIN_D4 PIN_PB2
 #define PIN_D5 PIN_PD5
 #define PIN_D6 PIN_PD6
 #define PIN_D7 PIN_PD7
 #define PIN_D8 PIN_PB0
 #define PIN_D9 PIN_PC3
-#define PIN_D10 PIN_PC2
+#define PIN_D10 PIN_PD2
 #define PIN_D11 PIN_PD1
 #define PIN_D12 PIN_PD0
 #define PIN_D13 PIN_PD4
@@ -46,7 +46,7 @@
 #define PIN_D15 PIN_PB6
 #define PIN_D16 PIN_PB7
 #define PIN_D17 PIN_A6
-#define PIN_D18 PIN_PB2
+#define PIN_D18 PIN_PC2
 #define PIN_D19 PIN_A7
 
 #define PIN_SDA PIN_PC4
